@@ -4,10 +4,4 @@
     height: 500px;
     align-items: center;
     justify-self: center;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-}
-.gameboard div{
-    border: 1px solid black;
-    height: 100%;
 }
