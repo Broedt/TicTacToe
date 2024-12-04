@@ -51,7 +51,7 @@ const Game = (() => {
             createPlayer(document.querySelector("#playerOne").value, "X"),
             createPlayer(document.querySelector("#playerTwo").value, "O")
         ];
-
+        restart();
         currentPlayerIndex = 0;
         gameOver = false;
 
@@ -70,6 +70,10 @@ const Game = (() => {
     
 
     const handleClick = (event) => {
+
+        if (gameOver === true){
+            return
+        }
         let index = parseInt(event.target.id.split("-")[1]);        
         if(Gameboard.getGameboard()[index] !== ""){
             return
@@ -109,11 +113,9 @@ const Game = (() => {
         }
     }
 
-    checkForTie = (board) => {
-        for(let i=0; i<board.length; i ++)
-            if(board !== ""){
-                return true
-            }
+    const checkForTie = (board) => {
+        const itsATie = board.every((slot) => slot !== "")
+        return itsATie
     }
 
     return {
