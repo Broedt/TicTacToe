@@ -1,3 +1,7 @@
+h1{
+   display: flex;
+   justify-content: center;
+}
 .gameboard{
     display: grid;
     width: 500px;
@@ -6,6 +10,14 @@
     justify-self: center;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+}
+
+button{
+    box-shadow: 2px 2px 6px black;
+}
+
+button, input{
+    margin: 5px;
 }
 
 .square{
@@ -21,4 +33,15 @@
     display: flex;
     justify-content: center;
     margin: 20px;
+}
+
+#displayResult {
+    width: fit-content;
+    font-size: 40px;
+    font-weight: 800;
+    display: flex;
+    justify-self: center;
+    background-color: rgb(5, 202, 5);
+    border-radius: 15px;
+    padding: 10px;
 }

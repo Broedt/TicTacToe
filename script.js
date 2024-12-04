@@ -3,6 +3,7 @@ const Gameboard = (() => {
     let gameboard = ["", "", "", "", "", "", "", "", ""];
 
 const render = () => {
+    document.querySelector(".gameboard").style.display = "grid";
 
     let boardHTML = "";
 
@@ -45,18 +46,25 @@ const Game = (() => {
     let players = [];
     let currentPlayerIndex; 
     let gameOver;
+    let resultMessage;
 
     const start = () =>{
         players = [
             createPlayer(document.querySelector("#playerOne").value, "X"),
             createPlayer(document.querySelector("#playerTwo").value, "O")
         ];
-        restart();
+        for (let i=0; i<9; i++){
+            Gameboard.update(i, "");
+         }
+        
         currentPlayerIndex = 0;
         gameOver = false;
 
         Gameboard.render();
         console.log(players)
+        document.querySelector("#displayResult").innerHTML = "";
+        document.querySelector("#displayResult").style.display = "none";
+
     
     }
 
@@ -66,6 +74,9 @@ const Game = (() => {
         }
         currentPlayerIndex = 0;
         gameOver = false;
+        
+        document.querySelector("#displayResult").innerHTML = "";
+        document.querySelector("#displayResult").style.display = "none";
     }
     
 
@@ -82,11 +93,15 @@ const Game = (() => {
         Gameboard.update(index, players[currentPlayerIndex].marker);
         if (checkForWinner(Gameboard.getGameboard(), players[currentPlayerIndex].mark)){
             gameOver = true;
-            alert(`${players[currentPlayerIndex].name} has won!`)
+            resultMessage =`${players[currentPlayerIndex].name} has won!`;
+            document.querySelector("#displayResult").style.display = "block";
+            document.querySelector("#displayResult").innerHTML = resultMessage;
         }
         else if (checkForTie(Gameboard.getGameboard())){
             gameOver = true;
-            alert("its a tie")
+            resultMessage = " it´s a Tie!";
+            document.querySelector("#displayResult").style.display = "block";
+            document.querySelector("#displayResult").innerHTML = resultMessage;
         }
 
         currentPlayerIndex = currentPlayerIndex === 0 ? 1 : 0;
